@@ -3,21 +3,30 @@ class_name Player extends CharacterBody2D
 
 const SPEED = 300.0
 
+var health = 5
+var maxHealth = 5
+
 var random = RandomNumberGenerator.new()
 
 var directionX = 0
 var directionY = 0
 var facing = 1
+var knockback = Vector2(0, 0)
 
 var bullet_template = load("res://objects/bullet.tscn").instantiate()
 
 @onready var player_sprite = $Player
 @onready var running_particles = $runningParticles
 @onready var level_borders = $"../LevelBorders"
+@onready var animation_player = $AnimationPlayer
 
 var is_alive = true
 
 func _physics_process(delta):
+	
+	knockback *= 0.9
+	position += knockback
+	
 	velocity.x = directionX * SPEED
 	velocity.y = directionY * SPEED
 	
@@ -68,3 +77,20 @@ func _input(event):
 	directionY = Input.get_axis("move_up", "move_down")
 	if directionY != 0:
 		facing = directionY
+
+func take_damage(damage : int):
+	if (animation_player.is_playing()):
+		return
+		
+	health -= damage
+	
+	var c = float(health) / float(maxHealth) * 1;
+	player_sprite.self_modulate = Color(c, c, c, 1)
+	scale = Vector2(c, c)
+	animation_player.play("damage")
+	
+	if (health <= 0):
+		die()
+	
+func die():
+	queue_free()

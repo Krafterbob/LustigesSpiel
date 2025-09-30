@@ -14,5 +14,6 @@ func _process(delta):
 		monster = get_parent()
 		return;
 	
-	var direction = player.position - monster.position
-	monster.velocity = direction.normalized() * speed
+	if (player != null):
+		var direction = player.position - monster.position
+		monster.velocity = direction.normalized() * speed

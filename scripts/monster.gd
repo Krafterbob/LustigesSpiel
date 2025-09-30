@@ -24,7 +24,14 @@ func _on_body_entered(body):
 		#take knockback
 		var direction = position - body.position
 		knockback = direction.normalized() * 10
-			
+		
+	if body is Player:
+		
+		body.take_damage(1)
+		
+		#take knockback
+		var direction = body.position - position
+		body.knockback = direction.normalized() * 10
 
 func take_damage(damage : int):
 	health -= damage

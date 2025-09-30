@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://djp1rs868watl"]
+[gd_scene load_steps=8 format=3 uid="uid://djp1rs868watl"]
 
 [ext_resource type="Texture2D" uid="uid://dmvo1mxt33anb" path="res://player.png" id="1_eqqp1"]
 [ext_resource type="Script" uid="uid://cont877gbutge" path="res://scripts/player.gd" id="1_ykyjo"]
@@ -9,14 +9,51 @@
 offsets = PackedFloat32Array(0, 0.333333, 0.873333, 1)
 colors = PackedColorArray(1, 1, 1, 0, 0.773537, 0.773537, 0.773537, 1, 0.406667, 0.406667, 0.406667, 1, 0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_ykyjo"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09780533, 0.19968587, 0.2995288, 0.40140936, 0.49921468, 0.60109526, 0.6989006, 0.7987435, 0.90062404, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.9882353, 1, 1), Color(1, 0.32156864, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156864, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uxov2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.9882353, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nmc1l"]
+_data = {
+&"RESET": SubResource("Animation_uxov2"),
+&"damage": SubResource("Animation_ykyjo")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 input_pickable = true
 script = ExtResource("1_ykyjo")
 
 [node name="Player" type="Sprite2D" parent="."]
+modulate = Color(1, 0.9882353, 1, 1)
 position = Vector2(12.999999, -5.9604645e-08)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.19999999, 0.19999999)
 texture = ExtResource("1_eqqp1")
 
 [node name="explosion" type="AudioStreamPlayer" parent="."]
@@ -38,7 +75,13 @@ scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_inqnh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(12, -2)
 rotation = 0.12217305
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(-80, -57, -76, -20, -53, 7, -78, 115, -56, 127, 28, -18, 59, -23, 77.782135, -42.744415, 72, -108, -68, -113)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nmc1l")
+}
