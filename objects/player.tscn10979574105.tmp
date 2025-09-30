@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://djp1rs868watl"]
+
+[ext_resource type="Texture2D" uid="uid://dmvo1mxt33anb" path="res://player.png" id="1_eqqp1"]
+[ext_resource type="Script" uid="uid://cont877gbutge" path="res://scripts/player.gd" id="1_ykyjo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4chfo"]
+
+[sub_resource type="Gradient" id="Gradient_inqnh"]
+offsets = PackedFloat32Array(0, 0.333333, 0.873333, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.773537, 0.773537, 0.773537, 1, 0.406667, 0.406667, 0.406667, 1, 0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 5
+script = ExtResource("1_ykyjo")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_eqqp1")
+
+[node name="explosion" type="AudioStreamPlayer" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("ShaderMaterial_4chfo")
+energy = 2.0
+
+[node name="runningParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.25
+randomness = 1.0
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 10.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_inqnh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(1, 1)
+rotation = 0.12217305
+scale = Vector2(3, 3)
+polygon = PackedVector2Array(-80, -57, -76, -20, -53, 7, -78, 115, -56, 127, 28, -18, 59, -23, 77.782135, -42.744415, 72, -108, -68, -113)
