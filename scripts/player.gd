@@ -2,42 +2,21 @@ class_name Player extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -29.0 - 9.8
-const COYOTE_TIME = 5
-const INTERACTION_RANGE = 30
 
 var random = RandomNumberGenerator.new()
 
-var jumping = 0
-var maxjumping = 10
-var endjumping = 5
 var directionX = 0
 var directionY = 0
 var facing = 1
-var interacting = false
 
-var pressed_jump = 0
-var was_on_floor = 0
-var pressed_interact = 0
+var bullet_template = load("res://objects/bullet.tscn").instantiate()
 
 @onready var player_sprite = $Player
-@onready var interacRayR = $interactionRayRight
-@onready var interacRayL = $interactionRayLeft
 @onready var running_particles = $runningParticles
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_alive = true
 	
 func _physics_process(delta):
-	#if (directionX == 1):
-	#	player_sprite.flip_h = false
-	#if (directionX == -1):
-	#	player_sprite.flip_h = true
-	#if (directionY == -1):
-	#	player_sprite.flip_v = false
-	#if (directionY == 1):
-	#	player_sprite.flip_v = true
 	velocity.x = directionX * SPEED
 	velocity.y = directionY * SPEED
 	
@@ -50,8 +29,10 @@ func _physics_process(delta):
 	camera.position.x += (position.x - camera.position.x) / 10;
 	camera.position.y += (position.y - camera.position.y) / 10;
 	
-	if (camera.position.y + get_viewport_rect().size.y > 1080):
-		camera.position.y = 1080 - get_viewport_rect().size.y;
+	if (camera.position.y + camera.get_viewport_rect().size.y / camera.zoom.x / 2 > 1080):
+		camera.position.y = 1080 - camera.get_viewport_rect().size.y / camera.zoom.x / 2;
+	if (camera.position.y - camera.get_viewport_rect().size.y / camera.zoom.x / 2 < 0):
+		camera.position.y = camera.get_viewport_rect().size.y / camera.zoom.x / 2;
 	
 func _input(event):
 	#if game_manager.game_state == "playing":
@@ -65,6 +46,18 @@ func _input(event):
 	#	
 	#	if Input.is_action_just_pressed("interact"):
 	#		pressed_interact = COYOTE_TIME
+
+	if event.is_action_pressed("left_click"):
+			
+		var direction = Vector2((event.position.x / camera.zoom.x + camera.position.x - camera.get_viewport_rect().size.x / camera.zoom.x / 2) - position.x, 
+								 (event.position.y / camera.zoom.y + camera.position.y - camera.get_viewport_rect().size.y / camera.zoom.y / 2) - position.y);
+		
+		var bullet = bullet_template.duplicate()
+		bullet.position = position + direction.normalized() * 50
+		bullet.velocity = direction.normalized() * 500
+		
+		get_parent().add_child(bullet)
+		
 
 	directionX = Input.get_axis("move_left", "move_right")
 	if directionX != 0:

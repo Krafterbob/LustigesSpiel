@@ -41,3 +41,5 @@ shape = SubResource("WorldBoundaryShape2D_n2rm1")
 [node name="CollisionShape2DBottom" type="CollisionShape2D" parent="collidors"]
 position = Vector2(0, 1080)
 shape = SubResource("WorldBoundaryShape2D_yv82f")
+
+[node name="LevelManager" type="Node" parent="."]

@@ -15,7 +15,7 @@ input_pickable = true
 script = ExtResource("1_ykyjo")
 
 [node name="Player" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(12.999999, -5.9604645e-08)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_eqqp1")
 
@@ -38,7 +38,7 @@ scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_inqnh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-1, -2)
+position = Vector2(12, -2)
 rotation = 0.12217305
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(-80, -57, -76, -20, -53, 7, -78, 115, -56, 127, 28, -18, 59, -23, 77.782135, -42.744415, 72, -108, -68, -113)

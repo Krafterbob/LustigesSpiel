@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsy76ncg7tlac"]
+
+[ext_resource type="Texture2D" uid="uid://bgxhkb3tmi2uc" path="res://assets/sprites/smiley.png" id="1_1hbe6"]
+[ext_resource type="Script" uid="uid://0drib7qs55bp" path="res://scripts/bullet.gd" id="1_3ndsa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hbe6"]
+radius = 50.0
+height = 238.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_3ndsa")
+
+[node name="Smiley" type="Sprite2D" parent="."]
+position = Vector2(-2.3841858e-07, 2)
+rotation = -0.4886922
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_1hbe6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.0000001, 1.9999998)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CapsuleShape2D_1hbe6")
