@@ -9,21 +9,6 @@
 offsets = PackedFloat32Array(0, 0.333333, 0.873333, 1)
 colors = PackedColorArray(1, 1, 1, 0, 0.773537, 0.773537, 0.773537, 1, 0.406667, 0.406667, 0.406667, 1, 0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_ykyjo"]
-resource_name = "damage"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.09780533, 0.19968587, 0.2995288, 0.40140936, 0.49921468, 0.60109526, 0.6989006, 0.7987435, 0.90062404, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 0.9882353, 1, 1), Color(1, 0.32156864, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156864, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_uxov2"]
 length = 0.001
 tracks/0/type = "value"
@@ -37,6 +22,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 0.9882353, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ykyjo"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09780533, 0.19968587, 0.2995288, 0.40140936, 0.49921468, 0.60109526, 0.6989006, 0.7987435, 0.90062404, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.9882353, 1, 1), Color(1, 0.32156864, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156864, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1), Color(1, 0.32156867, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nmc1l"]

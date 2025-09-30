@@ -13,7 +13,7 @@ func _physics_process(delta):
 	if (counter >= spawnInteval):
 		counter = 0;
 		
-		#for i in range(0, 3, 1):
+		#for i in range(0, 1, 1):
 		var position = Vector2((level_borders.position.x / camera.zoom.x + camera.position.x + camera.get_viewport_rect().size.x / camera.zoom.x / 2), 
 							(random.randi_range(0, 1080)))
 		
