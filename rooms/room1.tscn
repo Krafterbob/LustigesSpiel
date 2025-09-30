@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://n05rspt4y0bb"]
+[gd_scene load_steps=11 format=3 uid="uid://n05rspt4y0bb"]
 
 [ext_resource type="PackedScene" uid="uid://djp1rs868watl" path="res://objects/player.tscn" id="1_lwhkg"]
-[ext_resource type="Texture2D" uid="uid://1m4o12or7dye" path="res://assets/sprites/background.png" id="1_n2rm1"]
+[ext_resource type="Texture2D" uid="uid://6lm5dc77d3ae" path="res://assets/sprites/background.png" id="1_n2rm1"]
 [ext_resource type="Texture2D" uid="uid://b2qweu1mwmwaq" path="res://assets/sprites/floor.png" id="3_yv82f"]
 [ext_resource type="Script" uid="uid://b1oeqfgy7atr0" path="res://scripts/level_borders.gd" id="4_w4cg4"]
 [ext_resource type="Script" uid="uid://cg5esoqbrx3ec" path="res://scripts/level_manager.gd" id="5_ilnpg"]
+[ext_resource type="Script" uid="uid://j1803ono8l6h" path="res://scripts/pointsLabel.gd" id="6_6436r"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n2rm1"]
 normal = Vector2(0, 1)
@@ -14,10 +15,16 @@ normal = Vector2(0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w4cg4"]
 normal = Vector2(1, 0)
 
+[sub_resource type="LabelSettings" id="LabelSettings_6436r"]
+font_size = 48
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_lwhkg")]
-position = Vector2(217, 91)
+position = Vector2(419, 555)
+rotation = 3.1415927
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
@@ -86,6 +93,11 @@ position = Vector2(1875, 1006)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_yv82f")
 
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("5_ilnpg")
+
+[node name="Monsters" type="Node" parent="LevelManager"]
+
 [node name="LevelBorders" type="StaticBody2D" parent="."]
 script = ExtResource("4_w4cg4")
 
@@ -100,5 +112,16 @@ shape = SubResource("WorldBoundaryShape2D_yv82f")
 position = Vector2(0, 540)
 shape = SubResource("WorldBoundaryShape2D_w4cg4")
 
-[node name="LevelManager" type="Node" parent="."]
-script = ExtResource("5_ilnpg")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Node" parent="CanvasLayer"]
+
+[node name="Points" type="Label" parent="CanvasLayer/GUI"]
+offset_left = 1610.0
+offset_top = 41.0
+offset_right = 1874.0
+offset_bottom = 129.0
+text = "Points: 0"
+label_settings = SubResource("LabelSettings_6436r")
+horizontal_alignment = 2
+script = ExtResource("6_6436r")

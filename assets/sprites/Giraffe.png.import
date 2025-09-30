@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv3yao1gkuxwa"
-path="res://.godot/imported/background.jpg-09a9b3dd577528ecdb77a533b7627836.ctex"
+uid="uid://cfdo6jobq1tr4"
+path="res://.godot/imported/Giraffe.png-dda78af3119b2275d8119b9407fb6cbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background.jpg"
-dest_files=["res://.godot/imported/background.jpg-09a9b3dd577528ecdb77a533b7627836.ctex"]
+source_file="res://assets/sprites/Giraffe.png"
+dest_files=["res://.godot/imported/Giraffe.png-dda78af3119b2275d8119b9407fb6cbd.ctex"]
 
 [params]
 

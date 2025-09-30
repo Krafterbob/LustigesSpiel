@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player : Player = $"../../Player"
+@onready var player : Player = $"../../../../Player"
 var monster : Monster
 
 var speed = 3

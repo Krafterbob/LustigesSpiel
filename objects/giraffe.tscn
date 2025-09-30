@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://1bmxrwf5eidi"]
+
+[ext_resource type="Script" uid="uid://q348i4t8jqx" path="res://scripts/bosses/giraffe.gd" id="1_8ng46"]
+[ext_resource type="Texture2D" uid="uid://cfdo6jobq1tr4" path="res://assets/sprites/Giraffe.png" id="1_k3hsr"]
+
+[node name="Giraffe" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_8ng46")
+points = 1000.0
+health = 20.0
+isBossEnemy = true
+knockbackMultiplier = 0.0
+
+[node name="Giraffe" type="Sprite2D" parent="."]
+position = Vector2(-23, -154)
+texture = ExtResource("1_k3hsr")
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-97, -137, -103, -234, -165, -238, -167, -281, -72, -301, -37, -190, 84, -165, 130, -119, 94, -66, 88, -2, 38, -5, 35, -56, 4, -55, 2.5076294, -0.25524902, -59, 1, -61, -73)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

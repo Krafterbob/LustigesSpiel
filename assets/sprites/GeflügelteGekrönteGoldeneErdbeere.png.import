@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfvy7hg0wrium"
-path="res://.godot/imported/background2.jpg-0384e7374c53add95ddcc5d4b317feb7.ctex"
+uid="uid://c1r8ywqa556gw"
+path="res://.godot/imported/GeflügelteGekrönteGoldeneErdbeere.png-7875eb85f057161590e7c067e1188d4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/background2.jpg"
-dest_files=["res://.godot/imported/background2.jpg-0384e7374c53add95ddcc5d4b317feb7.ctex"]
+source_file="res://assets/sprites/GeflügelteGekrönteGoldeneErdbeere.png"
+dest_files=["res://.godot/imported/GeflügelteGekrönteGoldeneErdbeere.png-7875eb85f057161590e7c067e1188d4b.ctex"]
 
 [params]
 

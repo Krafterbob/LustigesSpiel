@@ -4,21 +4,6 @@
 [ext_resource type="Script" uid="uid://drfairvyjdj23" path="res://scripts/monster.gd" id="2_ft433"]
 [ext_resource type="Script" uid="uid://cq5f6lhcyp8rk" path="res://scripts/ai/follow_ai.gd" id="3_bsa2w"]
 
-[sub_resource type="Animation" id="Animation_bsa2w"]
-resource_name = "damage"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Wal2:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0.2, 0.2), Vector2(0.1, 0.1), Vector2(0.2, 0.2)]
-}
-
 [sub_resource type="Animation" id="Animation_ro7y4"]
 length = 0.001
 tracks/0/type = "value"
@@ -34,6 +19,21 @@ tracks/0/keys = {
 "values": [Vector2(0.2, 0.2)]
 }
 
+[sub_resource type="Animation" id="Animation_bsa2w"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wal2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.1, 0.1), Vector2(0.2, 0.2)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oa6yk"]
 _data = {
 &"RESET": SubResource("Animation_ro7y4"),
@@ -44,6 +44,9 @@ _data = {
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("2_ft433")
+points = 5.0
+health = 3.0
+damagable = true
 
 [node name="Wal2" type="Sprite2D" parent="."]
 position = Vector2(16.000008, -16.000004)
