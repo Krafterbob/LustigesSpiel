@@ -13,9 +13,10 @@ var bullet_template = load("res://objects/bullet.tscn").instantiate()
 
 @onready var player_sprite = $Player
 @onready var running_particles = $runningParticles
+@onready var level_borders = $"../LevelBorders"
 
 var is_alive = true
-	
+
 func _physics_process(delta):
 	velocity.x = directionX * SPEED
 	velocity.y = directionY * SPEED
@@ -29,10 +30,12 @@ func _physics_process(delta):
 	camera.position.x += (position.x - camera.position.x) / 10;
 	camera.position.y += (position.y - camera.position.y) / 10;
 	
-	if (camera.position.y + camera.get_viewport_rect().size.y / camera.zoom.x / 2 > 1080):
-		camera.position.y = 1080 - camera.get_viewport_rect().size.y / camera.zoom.x / 2;
-	if (camera.position.y - camera.get_viewport_rect().size.y / camera.zoom.x / 2 < 0):
-		camera.position.y = camera.get_viewport_rect().size.y / camera.zoom.x / 2;
+	if (camera.position.y + camera.get_viewport_rect().size.y / camera.zoom.y / 2 > 1080):
+		camera.position.y = 1080 - camera.get_viewport_rect().size.y / camera.zoom.y / 2;
+	if (camera.position.y - camera.get_viewport_rect().size.y / camera.zoom.y / 2 < 0):
+		camera.position.y = camera.get_viewport_rect().size.y / camera.zoom.y / 2;
+	if (camera.position.x - camera.get_viewport_rect().size.x / camera.zoom.x / 2 < level_borders.position.x):
+		camera.position.x = level_borders.position.x + camera.get_viewport_rect().size.x / camera.zoom.x / 2;
 	
 func _input(event):
 	#if game_manager.game_state == "playing":
@@ -54,7 +57,7 @@ func _input(event):
 		
 		var bullet = bullet_template.duplicate()
 		bullet.position = position + direction.normalized() * 50
-		bullet.velocity = direction.normalized() * 500
+		bullet.velocity = direction.normalized() * 750
 		
 		get_parent().add_child(bullet)
 		

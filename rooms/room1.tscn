@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://n05rspt4y0bb"]
+[gd_scene load_steps=9 format=3 uid="uid://n05rspt4y0bb"]
 
 [ext_resource type="PackedScene" uid="uid://djp1rs868watl" path="res://objects/player.tscn" id="1_lwhkg"]
 [ext_resource type="Texture2D" uid="uid://1m4o12or7dye" path="res://assets/sprites/background.png" id="1_n2rm1"]
 [ext_resource type="Texture2D" uid="uid://b2qweu1mwmwaq" path="res://assets/sprites/floor.png" id="3_yv82f"]
+[ext_resource type="Script" uid="uid://b1oeqfgy7atr0" path="res://scripts/level_borders.gd" id="4_w4cg4"]
+[ext_resource type="Script" uid="uid://cg5esoqbrx3ec" path="res://scripts/level_manager.gd" id="5_ilnpg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n2rm1"]
 normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yv82f"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w4cg4"]
+normal = Vector2(1, 0)
 
 [node name="Node2D" type="Node2D"]
 
@@ -33,13 +38,67 @@ position = Vector2(75, 1006)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_yv82f")
 
-[node name="collidors" type="StaticBody2D" parent="."]
+[node name="Floor2" type="ParallaxLayer" parent="Floor"]
+motion_mirroring = Vector2(150, 0)
 
-[node name="CollisionShape2DTop" type="CollisionShape2D" parent="collidors"]
+[node name="Sprite2D" type="Sprite2D" parent="Floor/Floor2"]
+position = Vector2(375, 1006)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_yv82f")
+
+[node name="Floor3" type="ParallaxLayer" parent="Floor"]
+motion_mirroring = Vector2(150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/Floor3"]
+position = Vector2(675, 1006)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_yv82f")
+
+[node name="Floor4" type="ParallaxLayer" parent="Floor"]
+motion_mirroring = Vector2(150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/Floor4"]
+position = Vector2(975, 1006)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_yv82f")
+
+[node name="Floor5" type="ParallaxLayer" parent="Floor"]
+motion_mirroring = Vector2(150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/Floor5"]
+position = Vector2(1275, 1006)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_yv82f")
+
+[node name="Floor6" type="ParallaxLayer" parent="Floor"]
+motion_mirroring = Vector2(150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/Floor6"]
+position = Vector2(1575, 1006)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_yv82f")
+
+[node name="Floor7" type="ParallaxLayer" parent="Floor"]
+motion_mirroring = Vector2(150, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/Floor7"]
+position = Vector2(1875, 1006)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_yv82f")
+
+[node name="LevelBorders" type="StaticBody2D" parent="."]
+script = ExtResource("4_w4cg4")
+
+[node name="CollisionShape2DTop" type="CollisionShape2D" parent="LevelBorders"]
 shape = SubResource("WorldBoundaryShape2D_n2rm1")
 
-[node name="CollisionShape2DBottom" type="CollisionShape2D" parent="collidors"]
+[node name="CollisionShape2DBottom" type="CollisionShape2D" parent="LevelBorders"]
 position = Vector2(0, 1080)
 shape = SubResource("WorldBoundaryShape2D_yv82f")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelBorders"]
+position = Vector2(0, 540)
+shape = SubResource("WorldBoundaryShape2D_w4cg4")
+
 [node name="LevelManager" type="Node" parent="."]
+script = ExtResource("5_ilnpg")
