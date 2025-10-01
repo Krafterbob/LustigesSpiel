@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqwik6acjtsyu"]
+
+[ext_resource type="Texture2D" uid="uid://c4drh3vxskkaa" path="res://assets/sprites/SummSumm(item).png" id="1_gyh3q"]
+[ext_resource type="Script" uid="uid://dm2cryar7417" path="res://scripts/summ_summ(item).gd" id="2_k3els"]
+
+[sub_resource type="Animation" id="Animation_k3els"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_xnb5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_retrl"]
+_data = {
+&"RESET": SubResource("Animation_xnb5c"),
+&"spawn": SubResource("Animation_k3els")
+}
+
+[node name="SummSumm(item)" type="Sprite2D"]
+position = Vector2(0, -1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_gyh3q")
+script = ExtResource("2_k3els")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_retrl")
+}
+autoplay = "spawn"

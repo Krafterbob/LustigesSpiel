@@ -61,18 +61,8 @@ func _physics_process(delta):
 		level_borders.position.x = position.x - camera.get_viewport_rect().size.x / camera.zoom.x / 2 - 50;
 	
 func _input(event):
-	#if game_manager.game_state == "playing":
-	#	if Input.is_action_just_pressed("jump"):
-	#		pressed_jump = COYOTE_TIME
-	#	if Input.is_action_just_released("jump"):
-	#		if velocity.y < 0 and jumping >= maxjumping - 3:
-	#			jumping = endjumping
-	#		else:
-	#			jumping = 0
-	#	
-	#	if Input.is_action_just_pressed("interact"):
-	#		pressed_interact = COYOTE_TIME
 
+	#spießen
 	if event.is_action_pressed("left_click"):
 			
 		var direction = Vector2((event.position.x / camera.zoom.x + camera.position.x - camera.get_viewport_rect().size.x / camera.zoom.x / 2) - position.x, 
@@ -84,7 +74,7 @@ func _input(event):
 		
 		get_parent().add_child(bullet)
 		
-
+	#bewegen
 	directionX = Input.get_axis("move_left", "move_right")
 	if directionX != 0:
 		facing = directionX

@@ -5,6 +5,9 @@ var spawnTimer = 0
 var random = RandomNumberGenerator.new()
 var wal_template = load("res://objects/wal.tscn").instantiate()
 var stab_template = load("res://objects/stab.tscn").instantiate()
+var stab_gorilla_template = load("res://objects/stabGorilla.tscn").instantiate()
+var geflügelte_gekrönte_goldene_erdbeere_template = load("res://objects/geflügelte_gekrönte_goldene_erdbeere.tscn").instantiate()
+var spawnIntevalInitial = 100
 var spawnInteval = 100
 var distance_until_spawn_interval_goes_down = 400
 
@@ -18,30 +21,37 @@ var giraffe_template = load("res://objects/giraffe.tscn").instantiate()
 
 func _physics_process(delta):
 	#spawn monsters
-	spawnInteval = 50 - (int(level_borders.position.x) / distance_until_spawn_interval_goes_down) if spawnInteval > 1 else 1
+	spawnInteval = spawnIntevalInitial - (int(level_borders.position.x) / distance_until_spawn_interval_goes_down) if spawnInteval > 1 else 1
 	spawnTimer += 1
 	if (spawnTimer >= spawnInteval):
 		spawnTimer = 0;
 		if (Globals.bossMode == false and monsters.get_child_count() < 100):
-			var monsterType = random.randi_range(0, 3)
+			var monsterType = random.randi_range(0, 30)
 			
-			if (monsterType < 3):
+			if (monsterType < 20):
 				#for i in range(0, 1, 1):
 				var position = Vector2((level_borders.position.x + camera.get_viewport_rect().size.x / camera.zoom.x + 100), 
 									   (random.randi_range(0, 1080)))
 				var wal = wal_template.duplicate()
 				wal.position = position
 				monsters.add_child(wal)
-			if (monsterType == 3):
+				
+			if (monsterType >= 20 and monsterType < 30):
 				var position
 				if (random.randf() < 0.6):
 					position = Vector2((level_borders.position.x + camera.get_viewport_rect().size.x / camera.zoom.x + 100), 1080)
 				else:
 					position = Vector2((level_borders.position.x + camera.get_viewport_rect().size.x / camera.zoom.x + 100), 
 									   stab_template.get_node(NodePath("CollisionShape2D")).shape.size.y * stab_template.get_node(NodePath("CollisionShape2D")).scale.y)
-				var stab = stab_template.duplicate()
+				var stab = stab_template.duplicate() if random.randf() < 0.9 else stab_gorilla_template.duplicate()
 				stab.position = position
 				monsters.add_child(stab)
+				
+			if (monsterType == 30):
+				var position = Vector2(level_borders.position.x + camera.get_viewport_rect().size.x / camera.zoom.x, 1080 / 2)
+				var geflügelte_gekrönte_goldene_erdbeere = geflügelte_gekrönte_goldene_erdbeere_template.duplicate()
+				geflügelte_gekrönte_goldene_erdbeere.position = position
+				monsters.add_child(geflügelte_gekrönte_goldene_erdbeere)
 	
 	#spawn bosses                   10000
 	if (level_borders.position.x >= 10000 and !Globals.giraffeBeaten and !Globals.bossMode):

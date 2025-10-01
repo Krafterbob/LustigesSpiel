@@ -1,11 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://43sfulmbgjq3"]
+[gd_scene load_steps=8 format=3 uid="uid://43sfulmbgjq3"]
 
+[ext_resource type="Script" uid="uid://bhsmlr0bwtmkn" path="res://scripts/collectable.gd" id="1_j3qvr"]
 [ext_resource type="Texture2D" uid="uid://c1r8ywqa556gw" path="res://assets/sprites/GeflügelteGekrönteGoldeneErdbeere.png" id="1_lht6v"]
+[ext_resource type="Script" uid="uid://b0c1sx8mah3ik" path="res://scripts/ai/flappy_flee_ai.gd" id="3_urlls"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j3qvr"]
 radius = 20.0
 
+[sub_resource type="Animation" id="Animation_urlls"]
+resource_name = "flap"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GeflügelteGekrönteGoldeneErdbeere:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.73, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4.7683716e-07, -9.536743e-07), Vector2(0, -10), Vector2(0, 17), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qi148"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GeflügelteGekrönteGoldeneErdbeere:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.7683716e-07, -9.536743e-07)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8fa12"]
+_data = {
+&"RESET": SubResource("Animation_qi148"),
+&"flap": SubResource("Animation_urlls")
+}
+
 [node name="GeflügelteGekrönteGoldeneErdbeere" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_j3qvr")
 
 [node name="GeflügelteGekrönteGoldeneErdbeere" type="Sprite2D" parent="."]
 position = Vector2(4.7683716e-07, -9.536743e-07)
@@ -15,3 +57,14 @@ texture = ExtResource("1_lht6v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_j3qvr")
+
+[node name="FlappyFleeAI" type="Node" parent="."]
+script = ExtResource("3_urlls")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8fa12")
+}
+autoplay = "flap"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

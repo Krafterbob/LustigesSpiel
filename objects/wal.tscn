@@ -44,9 +44,8 @@ _data = {
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("2_ft433")
-points = 5.0
+points = 5
 health = 3.0
-damagable = true
 
 [node name="Wal2" type="Sprite2D" parent="."]
 position = Vector2(16.000008, -16.000004)
