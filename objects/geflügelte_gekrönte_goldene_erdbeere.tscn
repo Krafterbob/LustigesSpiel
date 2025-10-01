@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://43sfulmbgjq3"]
+
+[ext_resource type="Texture2D" uid="uid://c1r8ywqa556gw" path="res://assets/sprites/GeflügelteGekrönteGoldeneErdbeere.png" id="1_lht6v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j3qvr"]
+radius = 20.0
+
+[node name="GeflügelteGekrönteGoldeneErdbeere" type="Area2D"]
+
+[node name="GeflügelteGekrönteGoldeneErdbeere" type="Sprite2D" parent="."]
+position = Vector2(4.7683716e-07, -9.536743e-07)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_lht6v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_j3qvr")

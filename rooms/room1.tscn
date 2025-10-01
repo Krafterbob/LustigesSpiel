@@ -20,7 +20,7 @@ font_size = 48
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2, 2)
 
-[node name="Node2D" type="Node2D"]
+[node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_lwhkg")]
 position = Vector2(419, 555)

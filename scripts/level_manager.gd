@@ -43,7 +43,7 @@ func _physics_process(delta):
 				stab.position = position
 				monsters.add_child(stab)
 	
-	#spawn bosses
+	#spawn bosses                   10000
 	if (level_borders.position.x >= 10000 and !Globals.giraffeBeaten and !Globals.bossMode):
 		Globals.activateBossMode()
 		var position = Vector2((level_borders.position.x + camera.get_viewport_rect().size.x / camera.zoom.x + 100), 

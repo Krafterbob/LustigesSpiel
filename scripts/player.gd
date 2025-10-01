@@ -13,7 +13,7 @@ var directionY = 0
 var facing = 1
 var knockback = Vector2(0, 0)
 
-var bullet_template = load("res://objects/bullet.tscn").instantiate()
+var bullet_template = load("res://objects/projectiles/bullet.tscn").instantiate()
 
 @onready var player_sprite = $Player
 @onready var running_particles = $runningParticles
@@ -23,7 +23,6 @@ var bullet_template = load("res://objects/bullet.tscn").instantiate()
 var is_alive = true
 
 func _physics_process(delta):
-	print("playerpos " + str(position))
 	#process knockback
 	knockback *= 0.9
 	position += knockback

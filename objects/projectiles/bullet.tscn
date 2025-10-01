@@ -11,6 +11,7 @@ height = 238.0
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_3ndsa")
+friendly = true
 
 [node name="Smiley" type="Sprite2D" parent="."]
 position = Vector2(-2.3841858e-07, 2)

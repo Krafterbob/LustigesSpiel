@@ -50,6 +50,7 @@ func _on_body_entered(body):
 func take_damage(damage : int):
 	if (damagable):
 		health -= damage
+		animation_player.stop()
 		animation_player.play("damage")
 		if (health <= 0):
 			die()

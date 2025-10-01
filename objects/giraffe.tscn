@@ -1,7 +1,106 @@
-[gd_scene load_steps=3 format=3 uid="uid://1bmxrwf5eidi"]
+[gd_scene load_steps=10 format=3 uid="uid://1bmxrwf5eidi"]
 
 [ext_resource type="Script" uid="uid://q348i4t8jqx" path="res://scripts/bosses/giraffe.gd" id="1_8ng46"]
 [ext_resource type="Texture2D" uid="uid://cfdo6jobq1tr4" path="res://assets/sprites/Giraffe.png" id="1_k3hsr"]
+[ext_resource type="Script" uid="uid://h2rsnul4kp52" path="res://scripts/ai/giraffe_ai.gd" id="3_y4mbp"]
+
+[sub_resource type="Animation" id="Animation_12ggu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Giraffe:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Giraffe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j2amy"]
+resource_name = "shoot"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Giraffe:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Giraffe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.40314296, 0.99208224, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.7, 0, 1), Color(0.9830372, 0.3388182, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2amy"]
+_data = {
+&"RESET": SubResource("Animation_12ggu"),
+&"shoot": SubResource("Animation_j2amy")
+}
+
+[sub_resource type="Animation" id="Animation_y4mbp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Giraffe:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t54iw"]
+resource_name = "damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Giraffe:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08763977, 0.39613178),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u2kee"]
+_data = {
+&"RESET": SubResource("Animation_y4mbp"),
+&"damage": SubResource("Animation_t54iw")
+}
 
 [node name="Giraffe" type="Area2D"]
 collision_layer = 3
@@ -13,13 +112,30 @@ isBossEnemy = true
 knockbackMultiplier = 0.0
 
 [node name="Giraffe" type="Sprite2D" parent="."]
-position = Vector2(-23, -154)
+position = Vector2(-16, 100)
 texture = ExtResource("1_k3hsr")
 flip_h = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(-1.8999939, 138.6)
 polygon = PackedVector2Array(-97, -137, -103, -234, -165, -238, -167, -281, -72, -301, -37, -190, 84, -165, 130, -119, 94, -66, 88, -2, 38, -5, 35, -56, 4, -55, 2.5076294, -0.25524902, -59, 1, -61, -73)
 
+[node name="GiraffeAI" type="Node" parent="."]
+script = ExtResource("3_y4mbp")
+
+[node name="AIAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j2amy")
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AIAnimations")
+libraries = {
+&"": SubResource("AnimationLibrary_u2kee")
+}
+
+[node name="FeuerballSpawner" type="Node2D" parent="."]
+position = Vector2(-142.1, -3.600006)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

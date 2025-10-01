@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ui86kcf8qhb"]
+
+[ext_resource type="Script" uid="uid://d312owij7cifc" path="res://scripts/enemy_bullet.gd" id="1_nn8fj"]
+[ext_resource type="Texture2D" uid="uid://dybg1t0r68wqr" path="res://assets/sprites/Feuerball.png" id="2_v1rb2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4uwu5"]
+radius = 50.249374
+
+[node name="Feuerball" type="Area2D"]
+script = ExtResource("1_nn8fj")
+
+[node name="Feuerball" type="Sprite2D" parent="."]
+position = Vector2(14, 2.1175824e-22)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_v1rb2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-9.536743e-07, 7.523164e-37)
+scale = Vector2(0.4, 0.4)
+shape = SubResource("CircleShape2D_4uwu5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

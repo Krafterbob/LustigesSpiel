@@ -1,5 +1,7 @@
 class_name Bullet extends CharacterBody2D
 
+@export var friendly : bool = false
+
 var lifetime = 200;
 var pierce = 3.0
 var pierceMax = 3.0
