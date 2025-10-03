@@ -48,6 +48,8 @@ _data = {
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_j3qvr")
+points = 50
+heals = 1
 
 [node name="GeflügelteGekrönteGoldeneErdbeere" type="Sprite2D" parent="."]
 position = Vector2(4.7683716e-07, -9.536743e-07)

@@ -71,6 +71,7 @@ func _input(event):
 		var bullet = bullet_template.duplicate()
 		bullet.position = position + direction.normalized() * 50
 		bullet.velocity = direction.normalized() * 750
+		bullet.supercharged = health - maxHealth
 		
 		get_parent().add_child(bullet)
 		
@@ -83,7 +84,8 @@ func _input(event):
 		facing = directionY
 
 func take_damage(damage : int):
-	if (animation_player.is_playing()):
+	
+	if (damage > 0 and animation_player.is_playing()):
 		return
 		
 	health -= damage
@@ -91,7 +93,12 @@ func take_damage(damage : int):
 	var c = float(health) / float(maxHealth) * 1;
 	player_sprite.self_modulate = Color(c, c, c, 1)
 	scale = Vector2(c, c)
-	animation_player.play("damage")
+	if (damage > 0):
+		animation_player.play("damage")
+	if (damage < 0):
+		animation_player.play("heal")
+	
+	player_sprite.material.set("shader_parameter/active", health > maxHealth);
 	
 	if (health <= 0):
 		die()

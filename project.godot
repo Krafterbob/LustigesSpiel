@@ -25,6 +25,10 @@ Globals="*res://scripts/important/globals.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[editor]
+
+movie_writer/movie_file="C:/Users/rezre/Desktop/game.avi"
+
 [importer_defaults]
 
 animation_library={

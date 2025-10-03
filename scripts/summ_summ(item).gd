@@ -16,5 +16,5 @@ func _physics_process(delta):
 	
 	if (position.x > camera.position.x + camera.get_viewport_rect().size.x / camera.zoom.x / 2.0 - 200 and 
 		position.y < camera.position.y - camera.get_viewport_rect().size.y / camera.zoom.y / 2.0 + 50):
-			Globals.points += points
+			Globals.addPoints(points)
 			queue_free()

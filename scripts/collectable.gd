@@ -3,6 +3,7 @@ class_name Collectable extends Area2D
 var velocity = Vector2(0, 0)
 
 @export var points : int = 100
+@export var heals : int = 0
 
 @onready var animation_player = $AnimationPlayer
 @onready var level_borders = $"../../../LevelBorders"
@@ -29,9 +30,13 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	#collect collectable
 	if body is Player:
-		collect()
+		collect(body)
 
-func collect():
+func collect(body):
+	
+	if (heals > 0):
+		body.take_damage(-heals)
+	
 	var random = RandomNumberGenerator.new()
 	for i in range(0, points / 5, 1):
 		var summsumm_item = summsumm_item_template.duplicate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://n05rspt4y0bb"]
+[gd_scene load_steps=13 format=3 uid="uid://n05rspt4y0bb"]
 
 [ext_resource type="PackedScene" uid="uid://djp1rs868watl" path="res://objects/player.tscn" id="1_lwhkg"]
 [ext_resource type="Texture2D" uid="uid://6lm5dc77d3ae" path="res://assets/sprites/background.png" id="1_n2rm1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b1oeqfgy7atr0" path="res://scripts/level_borders.gd" id="4_w4cg4"]
 [ext_resource type="Script" uid="uid://cg5esoqbrx3ec" path="res://scripts/level_manager.gd" id="5_ilnpg"]
 [ext_resource type="Script" uid="uid://j1803ono8l6h" path="res://scripts/pointsLabel.gd" id="6_6436r"]
+[ext_resource type="Script" uid="uid://dx0jntvn2htru" path="res://scripts/highscoreLabel.gd" id="7_17aq2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n2rm1"]
 normal = Vector2(0, 1)
@@ -17,6 +18,11 @@ normal = Vector2(1, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6436r"]
 font_size = 48
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_17aq2"]
+font_size = 24
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2, 2)
 
@@ -125,3 +131,14 @@ text = "Points: 0"
 label_settings = SubResource("LabelSettings_6436r")
 horizontal_alignment = 2
 script = ExtResource("6_6436r")
+
+[node name="Highscore" type="Label" parent="CanvasLayer/GUI"]
+offset_left = 1610.0
+offset_top = 105.0
+offset_right = 1871.0
+offset_bottom = 176.0
+text = "Highscore: 0
+"
+label_settings = SubResource("LabelSettings_17aq2")
+horizontal_alignment = 2
+script = ExtResource("7_17aq2")

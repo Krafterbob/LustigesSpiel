@@ -6,6 +6,7 @@ class_name Monster extends Area2D
 @export var isBossEnemy : bool = false
 @export var knockbackMultiplier : float = 1.0
 @export var pierces : int = 1.0
+@export var behindBorderDeletePixels : int = 0.0
 
 var velocity = Vector2(0, 0)
 var knockback = Vector2(0, 0)
@@ -15,13 +16,16 @@ var knockback = Vector2(0, 0)
 
 var summsumm_item_template = load("res://objects/summ_summ(item).tscn").instantiate()
 
+func _init():
+	health = health / Globals.defaultDifficultiy * Globals.difficultiy
+
 func _physics_process(delta):
 	#process knockback
 	knockback *= 0.9
 	position += velocity + knockback
 	
 	#delete monster if its off screen
-	if (level_borders != null and position.x < level_borders.position.x - 50):
+	if (!isBossEnemy and level_borders != null and position.x < level_borders.position.x - 50 - behindBorderDeletePixels):
 		queue_free()
 		
 	#delete monster if a boss is alive
@@ -38,11 +42,15 @@ func _on_body_entered(body):
 			body.queue_free()
 		
 		#take damage and knockback
-		take_damage(1)
+		take_damage(body.damae * (body.supercharged + 1 if body.supercharged > 0 else 1))
 		if (damagable):
 			var direction = position - body.position
 			knockback = direction.normalized() * 10 * knockbackMultiplier
 	if body is Player:
+		#take damage if has more than max health
+		if (body.health > body.maxHealth):
+			take_damage((body.health - body.maxHealth) * 3)
+		
 		#damage player
 		body.take_damage(1)
 		
@@ -51,6 +59,7 @@ func _on_body_entered(body):
 		body.knockback = direction.normalized() * 10
 
 func take_damage(damage : int):
+
 	if (damagable):
 		health -= damage
 		animation_player.stop()

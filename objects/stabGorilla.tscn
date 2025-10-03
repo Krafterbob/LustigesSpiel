@@ -51,6 +51,7 @@ points = 1
 health = 20.0
 knockbackMultiplier = 0.0
 pierces = 100
+behindBorderDeletePixels = 300
 
 [node name="Stab" type="Sprite2D" parent="."]
 position = Vector2(54, -126)

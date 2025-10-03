@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsy76ncg7tlac"]
+[gd_scene load_steps=6 format=3 uid="uid://bsy76ncg7tlac"]
 
 [ext_resource type="Texture2D" uid="uid://bgxhkb3tmi2uc" path="res://assets/sprites/smiley.png" id="1_1hbe6"]
 [ext_resource type="Script" uid="uid://0drib7qs55bp" path="res://scripts/bullet.gd" id="1_3ndsa"]
+[ext_resource type="Shader" uid="uid://cocfevxgj0ox6" path="res://shaders/superAxolotl.gdshader" id="2_s2aug"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0aya"]
+shader = ExtResource("2_s2aug")
+shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1hbe6"]
 radius = 50.0
@@ -14,6 +19,8 @@ script = ExtResource("1_3ndsa")
 friendly = true
 
 [node name="Smiley" type="Sprite2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_w0aya")
 position = Vector2(-2.3841858e-07, 2)
 rotation = -0.4886922
 scale = Vector2(0.2, 0.2)
