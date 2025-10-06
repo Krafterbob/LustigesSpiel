@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7nniat0xl148"]
+
+[ext_resource type="Texture2D" uid="uid://bjejeviof2av7" path="res://assets/sprites/Kamel.png" id="1_5ea7n"]
+[ext_resource type="Script" uid="uid://drfairvyjdj23" path="res://scripts/monster.gd" id="1_6nmnl"]
+[ext_resource type="Script" uid="uid://5jbpvhqnyarq" path="res://scripts/ai/kamel_ai.gd" id="3_1d0l5"]
+[ext_resource type="Texture2D" uid="uid://b2806o5ryuob1" path="res://assets/sprites/Lasso.png" id="4_1d0l5"]
+
+[sub_resource type="Animation" id="Animation_5ea7n"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Kamel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.99999994, -37), Vector2(0, -50), Vector2(-0.99999994, -37)]
+}
+
+[sub_resource type="Animation" id="Animation_ctj6x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Kamel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.99999994, -37)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Lasso:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Lasso:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6.000004, -86)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Lasso:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.73675]
+}
+
+[sub_resource type="Animation" id="Animation_2pq20"]
+resource_name = "roateLasso"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Lasso:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Lasso:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.73333335, 1.1666666),
+"transitions": PackedFloat32Array(0.5, 0.6372802, 0.49999997, 1),
+"update": 0,
+"values": [Vector2(-6.000004, -86), Vector2(-8, -34), Vector2(34.999996, -61), Vector2(-9.000004, -84.99999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Lasso:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.73333335, 1.1666666),
+"transitions": PackedFloat32Array(1.5691688, 1.7411014, 2.3784144, 1),
+"update": 0,
+"values": [3.73675, 1.3700835, -0.6335545, -2.548180707911721]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nmnl"]
+_data = {
+&"RESET": SubResource("Animation_ctj6x"),
+&"roateLasso": SubResource("Animation_2pq20"),
+&"walk": SubResource("Animation_5ea7n")
+}
+
+[node name="Kamel" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_6nmnl")
+
+[node name="Kamel" type="Sprite2D" parent="."]
+position = Vector2(-0.99999994, -37)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_5ea7n")
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-28, 1, -27, -29, -55, -50, -38, -71, 14, -73, 52, -16, 23, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AIAnimations" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayer")
+libraries = {
+&"": SubResource("AnimationLibrary_6nmnl")
+}
+
+[node name="KamelAI" type="Node" parent="."]
+script = ExtResource("3_1d0l5")
+
+[node name="Lasso" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-6.000004, -86)
+rotation = 3.73675
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_1d0l5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

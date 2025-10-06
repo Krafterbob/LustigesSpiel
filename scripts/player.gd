@@ -22,6 +22,9 @@ var bullet_template = load("res://objects/projectiles/bullet.tscn").instantiate(
 
 var is_alive = true
 
+func _ready() -> void:
+	position.x += Globals.levelStartPos
+
 func _physics_process(delta):
 	#process knockback
 	knockback *= 0.9

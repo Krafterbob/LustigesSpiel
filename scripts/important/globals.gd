@@ -2,6 +2,8 @@ class_name GlobalsManager extends Node
 
 var saves : Saves
 
+var levelStartPos : int = 0
+
 var difficultiy = 3
 var defaultDifficultiy = 3
 

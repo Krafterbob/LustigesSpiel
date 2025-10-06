@@ -53,6 +53,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_tbi8v")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-29, -54, 5, -53, -4, -23, 26, -44, 75, -25, 10, 28, -46, 23)
 
 [node name="FollowAI" type="Node" parent="."]

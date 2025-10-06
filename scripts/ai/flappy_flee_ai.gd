@@ -3,7 +3,7 @@ extends Node
 @onready var player : Player = $"../../../../Player"
 var monster
 
-var speed = 4
+var speed = 2
 var random = RandomNumberGenerator.new()
 var counter = 0
 

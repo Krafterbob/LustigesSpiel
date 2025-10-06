@@ -91,34 +91,6 @@ tracks/6/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_j2amy"]
-resource_name = "shoot"
-length = 1.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Giraffe:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Giraffe:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.40314296, 0.99208224, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.7, 0, 1), Color(0.9830372, 0.3388182, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_u2kee"]
 resource_name = "dash"
 length = 3.5
@@ -183,19 +155,32 @@ tracks/4/keys = {
 "values": [Vector2(1, 1), Vector2(1, 0.8), Vector2(1, 1), Vector2(1, 0.8), Vector2(1, 1), Vector2(1, 0.8), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_t6ce2"]
-resource_name = "teleport"
+[sub_resource type="Animation" id="Animation_j2amy"]
+resource_name = "shoot"
+length = 1.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Giraffe:scale")
+tracks/0/path = NodePath("Giraffe:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.50785303, 0.9940953),
-"transitions": PackedFloat32Array(1, 3.4822013, 1),
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.1, 0.1), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Giraffe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.40314296, 0.99208224, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.7, 0, 1), Color(0.9830372, 0.3388182, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_6jopu"]
@@ -236,6 +221,21 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1.1892067, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t6ce2"]
+resource_name = "teleport"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Giraffe:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.50785303, 0.9940953),
+"transitions": PackedFloat32Array(1, 3.4822013, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j2amy"]

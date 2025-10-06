@@ -20,6 +20,4 @@ position = Vector2(-9.536743e-07, 7.523164e-37)
 scale = Vector2(0.4, 0.4)
 shape = SubResource("CircleShape2D_4uwu5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
